@@ -6,7 +6,7 @@ services:
     container_name: mamma_api_container
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=mamma_db_container;Port=5432;Database=pizzaDB;User Id=postgre;Password=postgre;
+      - ConnectionStrings__DefaultConnection=Server=mamma_db_container;Port=5432;Database={database};User Id={id};Password={paas};
     depends_on:
       - mamma_db_container
     ports:
@@ -18,9 +18,9 @@ services:
     image: postgres:15-alpine
     container_name: mamma_postgre_container
     environment:
-      POSTGRES_DB: pizzaDB
-      POSTGRES_USER: postgre
-      POSTGRES_PASSWORD: postgre
+      POSTGRES_DB: {BD}
+      POSTGRES_USER: {user}
+      POSTGRES_PASSWORD: {pass}
     volumes:
       - mamma_postgre_data:/var/lib/postgresql/data
     ports:
