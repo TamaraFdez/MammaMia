@@ -22,7 +22,7 @@
 //     public static void AddPizza(Pizza pizza)
 //     {
 //         pizza.Id = nextId++;
-//         Pizzas.Add(pizza);
+//        Pizzas .Add(pizza);
 //     }
 
 //     public static void RemovePizza(int id)

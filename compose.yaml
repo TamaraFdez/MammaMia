@@ -1,0 +1,48 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mamma_api_container
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mamma_db_container;Port=5432;Database=pizzaDB;User Id=postgre;Password=postgre;
+    depends_on:
+      - mamma_db_container
+    ports:
+      - "8888:8080"
+    networks:
+      - pizza-net
+
+  mamma_db_container:
+    image: postgres:15-alpine
+    container_name: mamma_postgre_container
+    environment:
+      POSTGRES_DB: pizzaDB
+      POSTGRES_USER: postgre
+      POSTGRES_PASSWORD: postgre
+    volumes:
+      - mamma_postgre_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - pizza-net    
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: mamma_pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports: 
+      - "5050:80"
+    depends_on:
+      - mamma_db_container
+    networks:
+      - pizza-net
+
+volumes:
+  mamma_postgre_data:
+
+networks:
+  pizza-net:
+    driver: bridge

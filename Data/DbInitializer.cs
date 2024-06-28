@@ -1,16 +1,17 @@
 using MammaMia.Models;
 
-namespace MammaMia.Data;
-
-public static class DbInitializer{
-    public static void Initialize(PizzaContext context){
-          if (context.Pizzas.Any()
-                && context.Toppings.Any()
-                && context.Sauces.Any())
+namespace MammaMia.Data
+{
+    public static class DbInitializer
+    {
+        public static void Initialize(PizzaContext context)
+        {
+            if (context.Pizzas.Any()
+            && context.Toppings.Any()
+            && context.Sauces.Any())
             {
-                return;   
+                return;
             }
-
             var pepperoniTopping = new Topping { Name = "Pepperoni", Calories = 130 };
             var sausageTopping = new Topping { Name = "Sausage", Calories = 100 };
             var hamTopping = new Topping { Name = "Ham", Calories = 70 };
@@ -23,31 +24,31 @@ public static class DbInitializer{
             var pizzas = new Pizza[]
             {
                 new Pizza
-                    { 
-                        Name = "Meat Lovers", 
-                        Sauce = tomatoSauce, 
+                    {
+                        Name = "Meat Lovers",
+                        Sauce = tomatoSauce,
                         Toppings = new List<Topping>
                             {
-                                pepperoniTopping, 
-                                sausageTopping, 
-                                hamTopping, 
+                                pepperoniTopping,
+                                sausageTopping,
+                                hamTopping,
                                 chickenTopping
                             }
                     },
                 new Pizza
-                    { 
-                        Name = "Hawaiian", 
-                        Sauce = tomatoSauce, 
+                    {
+                        Name = "Hawaiian",
+                        Sauce = tomatoSauce,
                         Toppings = new List<Topping>
                             {
-                                pineappleTopping, 
+                                pineappleTopping,
                                 hamTopping
                             }
                     },
                 new Pizza
-                    { 
-                        Name="Alfredo Chicken", 
-                        Sauce = alfredoSauce, 
+                    {
+                        Name="Alfredo Chicken",
+                        Sauce = alfredoSauce,
                         Toppings = new List<Topping>
                             {
                                 chickenTopping
@@ -55,8 +56,11 @@ public static class DbInitializer{
                         }
             };
 
+
             context.Pizzas.AddRange(pizzas);
             context.SaveChanges();
+        }
     }
-    
+
 }
+

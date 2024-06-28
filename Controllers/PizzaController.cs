@@ -12,7 +12,6 @@ public class PizzaController : ControllerBase
     public PizzaController(PizzaService service)
     {
         _service = service;
-
     }
 
     [HttpGet]
