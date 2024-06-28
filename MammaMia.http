@@ -1,0 +1,37 @@
+@MammaMia_HostAddress = http://localhost:5015
+
+GET {{MammaMia_HostAddress}}/pizza
+Accept: application/json
+
+###
+
+GET {{MammaMia_HostAddress}}/pizza/3
+Accept: application/json
+
+###
+
+POST {{MammaMia_HostAddress}}/pizza
+Content-Type: application/json
+
+{
+  "name": "Prosciutto",
+  "isGlutenFree": false
+}
+
+###
+
+PUT  {{MammaMia_HostAddress}}/pizza/1
+Content-Type: application/json
+
+{
+  "id":1,
+  "name": "Calzone",
+  "isGlutenFree": false
+}
+
+###
+
+DELETE   {{MammaMia_HostAddress}}/pizza/1
+Content-Type: application/json
+
+###
